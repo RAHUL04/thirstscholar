@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Flask Intro</title>
+	<link rel="stylesheet" href="assets/form-search.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome to Flask!</h2>
+      <br>
+          <div class="main-content">
+        <form class="form-search" method="get" action="#">
+            <input type="search" name="search" placeholder="I am looking for..">
+            <button type="submit">Search</button>
+            <i class="fa fa-search"></i>
+        </form>
+
+    </div>
+
+      <p>Click <a href="/">here</a> to go home.</p>
+    </div>
+  </body>
+</html>
+
