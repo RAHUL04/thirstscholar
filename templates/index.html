@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.2.8/jquery.form-validator.min.js"></script>
   <style>
     /* Remove the navbar's default rounded borders and increase the bottom margin */ 
     .navbar {
@@ -48,17 +49,21 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
-        <li><a href="{{ url_for('search') }}">Search</a></li>
-        <li><a href="{{ url_for('upload') }}">Upload</a></li>
-        <li><a href="{{ url_for('contact') }}">Contact</a></li>
-      </ul>
+        <li><a href="{{ url_for('search') }}"><span class="glyphicon glyphicon-search">Search</a></li>
+        <li><a href="{{ url_for('upload') }}"><span class="glyphicon glyphicon-cloud-upload"></span>Upload</a></li>
+        <li><a href="{{ url_for('list') }}" ><span class="glyphicon glyphicon-list-alt"></span>List</a></li>
+		<li><a href="{{ url_for('contact') }}">Contact</a></li>
+		
+		
+      </ul> 	
       <ul class="nav navbar-nav navbar-right">
 	  {% if session['name'] %}
-            <span class="glyphicon glyphicon-user"></span> User:<strong>{{session['name']}}</strong>.<br/>
+            <a href="{{ url_for('clearsession') }}"><span class="glyphicon glyphicon-dashboard"></span> User:<strong>{{session['name']}}</strong>.<br/></a>
+			<a href="{{ url_for('clearsession') }}"><span class="glyphicon glyphicon-log-out"></span>Logout</a>
             {% else %}
-            <li><a href="{{ url_for('register') }}"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
-            
-        <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+            <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-dashboard"></span> Your Account</a></li>
+			<li><a href="{{ url_for('register') }}"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+      
 		{% endif %}  
       </ul>
     </div>

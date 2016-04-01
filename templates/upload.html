@@ -52,11 +52,18 @@
         <li><a href="{{ url_for('upload') }}">Upload</a></li>
         <li><a href="{{ url_for('contact') }}">Contact</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="{{ url_for('register') }}"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+	<ul class="nav navbar-nav navbar-right">
+	  {% if session['name'] %}
+<a href="{{ url_for('clearsession') }}"><span class="glyphicon glyphicon-dashboard"></span> User:<strong>{{session['name']}}</strong>.<br/></a>
+			<a href="{{ url_for('clearsession') }}"><span class="glyphicon glyphicon-log-out"></span>Logout</a>
+            {% else %}
+            <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-dashboard"></span> Your Account</a></li>
+			<li><a href="{{ url_for('register') }}"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+      
+		{% endif %}  
       </ul>
-    </div>
+    
+     </div>
   </div>
 </nav>
 

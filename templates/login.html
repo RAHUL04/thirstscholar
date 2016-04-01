@@ -53,8 +53,8 @@
         <li><a href="{{ url_for('contact') }}">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="{{ url_for('register') }}"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-search"></span> Cart</a></li>
+        <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-dashboard"></span> Your Account</a></li>
+        <li><a href="{{ url_for('register') }}"><span class="glyphicon glyphicon-user"></span>Register</a></li>
       </ul>
     </div>
   </div>
@@ -62,9 +62,28 @@
 
 
 <footer class="container-fluid text-center">
-  <form method="get" action="{{ url_for('login') }}">
-                  <label for="yourname">Please enter your name:</label>
-                  <input type="text" name="yourname" /><br />
+  <form class="form-horizontal" action={{ url_for('login') }} method="POST">
+                  <div class="control-group">
+              <label class="control-label" for="email">E-mail</label>
+              <div class="controls">
+                <input id="email" name="email" placeholder="" class="form-control input-lg" type="email">
+                <p class="help-block">Please provide your E-mail</p>
+              </div>
+            </div>
+         
+            <div class="control-group">
+              <label class="control-label" for="password">Password</label>
+              <div class="controls">
+                <input id="password" name="password" placeholder="" class="form-control input-lg" type="password">
+                <p class="help-block">Password should be at least 6 characters</p>
+              </div>
+            </div>
+         <div class="control-group">
+              <!-- Button -->
+              <div class="controls">
+                <button class="btn btn-success">Register</button>
+              </div>
+            </div>
                   <input type="submit" />
                 </form>
   </footer>

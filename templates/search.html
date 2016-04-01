@@ -7,6 +7,16 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+   <script>
+    function showDrop(){
+        $('#select').attr('size',3);
+        $("#select").show();
+    }
+    function populateTextBox(){
+            var val = $("#select option:selected").text();
+        $("#input").val(val);
+    }
+   </script>
   <style>
     /* Remove the navbar's default rounded borders and increase the bottom margin */ 
     .navbar {
@@ -52,20 +62,30 @@
         <li><a href="{{ url_for('upload') }}">Upload</a></li>
         <li><a href="{{ url_for('contact') }}">Contact</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="{{ url_for('register') }}"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+     <ul class="nav navbar-nav navbar-right">
+	  {% if session['name'] %}
+            <span class="glyphicon glyphicon-user"></span> User:<strong>{{session['name']}}</strong>.<br/>
+			<a href="{{ url_for('clearsession') }}"><span class="glyphicon glyphicon-logout"></span>Logout</a>
+            {% else %}
+            <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-dashboard"></span> Your Account</a></li>
+			<li><a href="{{ url_for('register') }}"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+      
+		{% endif %}  
       </ul>
-    </div>
+    
+     </div>
   </div>
 </nav>
 
 
 <footer class="container-fluid text-center">
   
-  <form class="form-inline">Search:
-    <input type="keyword" class="form-control" size="50" placeholder="keyword">
-    <button type="button" class="glyphicon glyphicon-search btn btn-danger">Search</button>
+  <form action={{ url_for('results') }} method="post" class="form-inline" >
+  
+  Search:<input type="keyword" id="keyword" name="keyword" class="form-control" size="50" placeholder="keyword" >
+  
+  <button type="button" class="glyphicon glyphicon-search btn btn-danger">Search</button>
+	
   </form>
 </footer>
 

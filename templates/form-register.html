@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.2.8/jquery.form-validator.min.js"></script>
   <style>
     /* Remove the navbar's default rounded borders and increase the bottom margin */ 
     .navbar {
@@ -53,53 +54,69 @@
         <li><a href="{{ url_for('contact') }}">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="{{ url_for('register') }}"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-search"></span> Cart</a></li>
+        <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-dashboard"></span> Your Account</a></li>
+        <li><a href="{{ url_for('register') }}"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+      
       </ul>
     </div>
   </div>
 </nav>
 
 
-<footer class="container-fluid text-center">
-  
-   <form data-toggle="validator" role="form " action="{{ url_for('response') }}" method="post">
-  <div class="form-group">
-    <label for="inputName" class="control-label">Name</label>
-    <input type="text" class="form-control" id="inputName"  name="inputName" placeholder="NAME" required>
+
+ <div class="container">
+  <div class="row">
+  	<div class="col-md-6">
+    
+          <form class="form-horizontal" action={{ url_for('response') }} method="POST">
+          <fieldset>
+            <div id="legend">
+              <legend class="">Register</legend>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="username">Username</label>
+              <div class="controls">
+                <input id="username" name="username" placeholder="" class="form-control input-lg" type="text" data-validation="length alphanumeric" data-validation-length="min4">
+                <p class="help-block">Username can contain any letters or numbers, without spaces</p>
+              </div>
+            </div>
+         
+            <div class="control-group">
+              <label class="control-label" for="email">E-mail</label>
+              <div class="controls">
+                <input id="email" name="email" placeholder="" class="form-control input-lg" type="email">
+                <p class="help-block">Please provide your E-mail</p>
+              </div>
+            </div>
+         
+            <div class="control-group">
+              <label class="control-label" for="password">Password</label>
+              <div class="controls">
+                <input id="password" name="password" placeholder="" class="form-control input-lg" type="password">
+                <p class="help-block">Password should be at least 6 characters</p>
+              </div>
+            </div>
+         
+            <div class="control-group">
+              <label class="control-label" for="password_confirm">Password (Confirm)</label>
+              <div class="controls">
+                <input id="password_confirm" name="password_confirm" placeholder="" class="form-control input-lg" type="password">
+                <p class="help-block">Please confirm password</p>
+              </div>
+            </div>
+         
+            <div class="control-group">
+              <!-- Button -->
+              <div class="controls">
+                <button class="btn btn-success">Register</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+    
+    </div> 
   </div>
-  
-  
-    <label for="inputEmail" class="control-label">Email</label>
-    <input type="email" class="form-control" id="inputEmail"  name="inputEmail"placeholder="Email" data-error="Bruh, that email address is invalid" required>
-    <div class="help-block with-errors"></div>
-  <div class="form-group">
-    <label for="inputPassword" class="control-label">Password</label>
-    <div class="form-group col-sm-6">
-      <input type="password" data-minlength="6" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password" required>
-      <span class="help-block">Minimum of 6 characters</span>
-    </div>
-    <div class="form-group col-sm-6">
-      <input type="password" class="form-control" id="inputPasswordConfirm" name="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
-      <div class="help-block with-errors"></div>
-    </div>
-    </div>
-  </div>
-  
-  <div class="form-group">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" id="terms" data-error="Before you wreck yourself" required>
-        IACCEPT TO TERMS AND CONDITIONS
-      </label>
-      <div class="help-block with-errors"></div>
-    </div>
-  </div>
-  <div class="form-group">
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </div>
-</form>
-  </footer>
+</div> 
 
 </body>
 </html>
